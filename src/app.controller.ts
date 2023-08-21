@@ -1,6 +1,8 @@
 import { Controller, Post, Body, Get, HttpCode, Param, ParseIntPipe, Query, ValidationPipe } from '@nestjs/common';
 import { AppService } from './app.service';
 import { NewUserDTO } from './DTO/user.dto';
+import { NewTweetDTO } from './DTO/tweet.dto';
+import { queryPage } from './DTO/queryPage.dto';
 
 @Controller()
 export class AppController {
@@ -17,13 +19,13 @@ export class AppController {
         return this.appService.postSignUpService(body);
     }
 
-    //@Post("tweets")
-    //postTweetController(@Body(new ValidationPipe()) body: NewTweetDTO) {
-    //    return this.appService.postTweetService();
-    //}
+    @Post("tweets")
+    postTweetController(@Body(new ValidationPipe()) body: NewTweetDTO) {
+        return this.appService.postTweetService(body);
+    }
 
     @Get("tweets")
-    getTweetController(@Query("page", ParseIntPipe) page: number) {
+    getTweetController(@Query("page") page: string) {
         return this.appService.getTweetService(page);
     }
 

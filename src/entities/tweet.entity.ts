@@ -10,4 +10,12 @@ export class Tweet {
         this.user = user;
         this.tweet = tweet;
     }
+
+    getTweet(): string {
+        return this.tweet;
+    }
+    
+    getTweetUsername(): string{
+        return this.user.getUsername();
+    }
 }

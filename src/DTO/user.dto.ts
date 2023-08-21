@@ -1,11 +1,12 @@
-import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { IsString, IsNotEmpty } from "class-validator";
+import { IsUrl } from "class-validator"
 
 export class NewUserDTO {
-    @IsString({ message: "Nome de usuario invalido" })
-    @IsNotEmpty({ message: "Preencha o campo username" })
+    @IsString({ message: "The field is required!" })
+    @IsNotEmpty({ message: "The field is required!" })
     username: string;
 
-    @IsUrl({ require_protocol: true }, { message: "Url invalida" })
-    @IsNotEmpty({ message: "Preencha o campo com a url da imagem" })
+    @IsUrl({ require_protocol: true }, { message: "The field is required!" })
+    @IsNotEmpty({ message: "The field is required!" })
     avatar: string;
 }
