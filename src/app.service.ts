@@ -17,28 +17,28 @@ export class AppService {
 
         ];
         this.tweets = [
-            new Tweet(new User("mateuspit", "foto.jpg"), "xingar muito no X"),
-            new Tweet(new User("suetam", "avatar.jpg"), "cheguei com os refri"),
-            new Tweet(new User("neymar", "self.jpg"), "11saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "22saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "33saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "4saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "5saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "6saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "7saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "8saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "9saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "10saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "11saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "12saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "13saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "14saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "15saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "16saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "17saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "18saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "19saudade do que n vivemos"),
-            new Tweet(new User("neymar", "self.jpg"), "20saudade do que n vivemos"),
+            //new Tweet(new User("mateuspit", "foto.jpg"), "xingar muito no X"),
+            //new Tweet(new User("suetam", "avatar.jpg"), "cheguei com os refri"),
+            //new Tweet(new User("neymar", "self.jpg"), "11saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "22saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "33saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "4saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "5saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "6saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "7saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "8saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "9saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "10saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "11saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "12saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "13saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "14saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "15saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "16saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "17saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "18saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "19saudade do que n vivemos"),
+            //new Tweet(new User("neymar", "self.jpg"), "20saudade do que n vivemos"),
         ];
     }
 
@@ -46,7 +46,7 @@ export class AppService {
         return "Online!"
     }
 
-    postSignUpService(userBody: NewUserDTO) { 
+    postSignUpService(userBody: NewUserDTO) {
         console.log(`Salvar usuário ${JSON.stringify(userBody)}`);
         return 'Hello World1!';
     }
@@ -102,9 +102,26 @@ export class AppService {
     }
 
 
-    getTweetByUsernameService(username: string): Tweet[] {
+    getTweetByUsernameService(username: string) { //done
         //const allUsernameTweets = this.tweets.find(t => t.user.username === "neymar");
-        console.log(`Tenho que achar os tweets do ${username}`);
-        return [];
+        const tweetsArray = [];
+        let avatar = "";
+        this.users.forEach((user) => {
+            if (user.getUsername() === username) {
+                avatar = user.getAvatar();
+            }
+        })
+        this.tweets.forEach((tweet) => {
+            if (tweet.getTweetUsername() === username) {
+                const data = {
+                    tweet: tweet.getTweet(),
+                    avatar: avatar,
+                    username: tweet.getTweetUsername()
+                }
+                tweetsArray.push(data)
+            }
+        })
+        console.log(tweetsArray)
+        return tweetsArray;
     }
 }

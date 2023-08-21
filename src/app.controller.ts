@@ -25,7 +25,7 @@ export class AppController {
     }
 
     @Get("tweets")
-    getTweetController(@Query("page") page: string) {
+    getTweetController(@Query("page") page: string) { //done
         return this.appService.getTweetService(page);
     }
 
