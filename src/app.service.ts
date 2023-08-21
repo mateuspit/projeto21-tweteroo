@@ -47,8 +47,10 @@ export class AppService {
     }
 
     postSignUpService(userBody: NewUserDTO) {
-        console.log(`Salvar usuário ${JSON.stringify(userBody)}`);
-        return 'Hello World1!';
+        //console.log(`Salvar usuário ${JSON.stringify(userBody)}`);
+        //return 'Hello World1!';
+        const { username, avatar } = userBody;
+        this.users.push(new User(username, avatar));
     }
 
     postTweetService(tweetBody: NewTweetDTO): string {
