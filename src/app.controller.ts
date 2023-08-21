@@ -8,7 +8,7 @@ import { queryPage } from './DTO/queryPage.dto';
 export class AppController {
     constructor(private readonly appService: AppService) { }
 
-    @Get("health")
+    @Get("/")
     getHealthController(): string {
         return this.appService.getHealthService();
     }

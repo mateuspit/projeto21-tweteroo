@@ -43,7 +43,7 @@ export class AppService {
     }
 
     getHealthService(): string {
-        return "Online!"
+        return "I'm okay!"
     }
 
     postSignUpService(userBody: NewUserDTO) { //done
@@ -53,7 +53,7 @@ export class AppService {
         this.users.push(new User(username, avatar));
     }
 
-    postTweetService(tweetBody: NewTweetDTO) {
+    postTweetService(tweetBody: NewTweetDTO) {//DONE
         //console.log(`Salvar tweet ${JSON.stringify(tweetBody)}`);
         //return 'Hello World';
         const { tweet, username } = tweetBody
