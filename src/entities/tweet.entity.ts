@@ -3,10 +3,10 @@ import {
 } from "./user.entity"
 
 export class Tweet {
-    private user: User;
+    private user: string;
     private tweet: string;
 
-    constructor(user: User, tweet: string) {
+    constructor(user: string, tweet: string) {
         this.user = user;
         this.tweet = tweet;
     }
@@ -14,8 +14,8 @@ export class Tweet {
     getTweet(): string {
         return this.tweet;
     }
-    
-    getTweetUsername(): string{
-        return this.user.getUsername();
+
+    getTweetUsername(): string {
+        return this.user;
     }
 }

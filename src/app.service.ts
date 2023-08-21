@@ -46,16 +46,27 @@ export class AppService {
         return "Online!"
     }
 
-    postSignUpService(userBody: NewUserDTO) {
+    postSignUpService(userBody: NewUserDTO) { //done
         //console.log(`Salvar usuário ${JSON.stringify(userBody)}`);
         //return 'Hello World1!';
         const { username, avatar } = userBody;
         this.users.push(new User(username, avatar));
     }
 
-    postTweetService(tweetBody: NewTweetDTO): string {
-        console.log(`Salvar tweet ${JSON.stringify(tweetBody)}`);
-        return 'Hello World';
+    postTweetService(tweetBody: NewTweetDTO) {
+        //console.log(`Salvar tweet ${JSON.stringify(tweetBody)}`);
+        //return 'Hello World';
+        const { tweet, username } = tweetBody
+        const userExists = this.users.some((user) => user.getUsername() === username);
+
+        if (!userExists) {
+            throw new HttpException(
+                'User not authorized',
+                HttpStatus.UNAUTHORIZED,
+            );
+        }
+
+        this.tweets.push(new Tweet(username, tweet));
     }
 
     getTweetService(page: string) { //done 
